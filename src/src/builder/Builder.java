@@ -71,18 +71,4 @@ public class Builder {
 
         return returnDate.toString();
     }
-    
-    public static Date stringToDate(Object date) throws ParseException {
-        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-        
-        System.out.println(df.parse((String)date));
-        
-        try{
-            return df.parse((String)date);
-        } catch(ParseException ex) {
-         
-        }
-        
-        return null;
-    }
 }
