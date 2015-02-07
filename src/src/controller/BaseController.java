@@ -40,7 +40,7 @@ public class BaseController {
     }
     
     private void init() throws SQLException{    
-        Adapter adapter = new Adapter("root", "fullhousev2", "", "localhost");
+        Adapter adapter = new Adapter("root", "fullhousegr9", "", "localhost");
         conn = adapter.getConnection();
         stat = conn.createStatement();  
     }
