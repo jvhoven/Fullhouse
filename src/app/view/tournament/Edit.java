@@ -131,9 +131,10 @@ public class Edit extends src.view.Edit {
         
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String date = df.format((Date)dbData.get("start_date"));
-        
-        DefaultComboBoxModel cLocations = controller.getLocations();
-        cLocations.setSelectedItem(dbData.get("location"));
+
+        LocationController lController = new LocationController();
+        DefaultComboBoxModel cLocations = lController.getAllCombo();
+        cLocations.setSelectedItem(lController.getValueComboBox((String)dbData.get("location")));
         
         DefaultComboBoxModel cParticipantsPerTable = controller.getRandomValues(1, 20);
         cParticipantsPerTable.setSelectedItem(dbData.get("players_per_table"));
@@ -184,12 +185,14 @@ public class Edit extends src.view.Edit {
     
     private void newEdit() {
         
+        LocationController lController = new LocationController();
+        
         formBuilder.addTextfield(new JLabel("Naam: ", JLabel.LEFT), name = new JTextField(25));
         formBuilder.addTextfield(new JLabel("Startdatum: ", JLabel.LEFT), startDate = new JTextField(25));
         formBuilder.addTextfield(new JLabel("Beschrijving: ", JLabel.LEFT), description = new JTextField(25));
         formBuilder.addTextfield(new JLabel("Minimaal inschrijvingen: ", JLabel.LEFT), minParticipants = new JTextField(25));
         formBuilder.addCombobox(new JLabel("Spelers per sessie: ", JLabel.LEFT), playersPerTable = new JComboBox(controller.getRandomValues(1, 20)));
-        formBuilder.addCombobox(new JLabel("Locatie: ", JLabel.LEFT), locations = new JComboBox(controller.getLocations()));
+        formBuilder.addCombobox(new JLabel("Locatie: ", JLabel.LEFT), locations = new JComboBox(lController.getAllCombo()));
         formBuilder.addCombobox(new JLabel("Inleg: ", JLabel.LEFT), payments = new JComboBox(controller.getRandomValues(10, 20)));
         
     }

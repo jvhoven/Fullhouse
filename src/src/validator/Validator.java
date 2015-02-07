@@ -56,8 +56,11 @@ public class Validator {
                  
             String labelText = label.getText().toLowerCase();         
             
-            if((value.length() == 0) && focusable || value.equals(" ") && !labelText.contains("locatie")) {
-                errors.add(label.getText().replace(":", "") + "moet ingevuld zijn.");
+            if((value.length() == 0) && focusable || value.equals(" ")) {
+                if(labelText.contains("locatie") || labelText.contains("goedkeuring")) {
+                } else {
+                    errors.add(label.getText().replace(":", "") + "moet ingevuld zijn.");
+                }
             } else {
                 
                 // Datum validaties

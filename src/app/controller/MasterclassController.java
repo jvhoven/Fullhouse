@@ -62,7 +62,7 @@ public class MasterclassController extends BaseController {
             update.setString(2, (String)data.get("start_date"));
             update.setString(3, (String) data.get("min_rating"));
             update.setInt(4, (int)user.get("id"));
-            update.setString(5, (String) data.get("price"));
+            update.setDouble(5, Double.parseDouble((String)data.get("price")));
              
             if(data.get("location").equals(" ")) {
                 update.setNull(6, java.sql.Types.CHAR);
@@ -87,7 +87,7 @@ public class MasterclassController extends BaseController {
             insert.setString(2, (String) data.get("start_date"));
             insert.setString(3, (String) data.get("min_rating"));
             insert.setInt(4, (int)user.get("id"));
-            insert.setString(5, (String) data.get("price"));
+            insert.setDouble(5, Double.parseDouble((String)data.get("price")));
             
             if(data.get("location").equals(" ")) {
                 insert.setNull(6, java.sql.Types.CHAR);
@@ -123,24 +123,5 @@ public class MasterclassController extends BaseController {
     
         return users;
         
-    }
-    
-    public DefaultComboBoxModel getLocations() {
-        
-        DefaultComboBoxModel locations = new DefaultComboBoxModel();
-        locations.addElement("- Selecteer locatie -");
-        
-        LocationController locationController = new LocationController();
-        
-        try{
-            ResultSet allLocations = locationController.getAll();
-            while(allLocations.next()) {
-                locations.addElement("[" + allLocations.getString("postal") + "] " + allLocations.getString("address") + " " + allLocations.getInt("streetnr") + ", " + allLocations.getString("city"));
-            }
-        } catch(SQLException e) {
-            
-        }
-
-        return locations;
     }
 }

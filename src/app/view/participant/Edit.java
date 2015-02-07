@@ -119,7 +119,12 @@ public class Edit extends src.view.Edit {
         
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String start_date = df.format((Date)dbData.get("start_date"));
-        String date_approved = df.format((Date)dbData.get("date_approved"));
+        
+        String date_approved = "";
+        
+        if(String.valueOf(dbData.get("date_approved")).length() > 5) {
+            date_approved = df.format((Date)dbData.get("date_approved"));
+        }
         
         TournamentController tournamentController = new TournamentController();
         UserController userController = new UserController();

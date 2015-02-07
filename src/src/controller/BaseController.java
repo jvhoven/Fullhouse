@@ -70,7 +70,7 @@ public class BaseController {
     public HashMap get(Object id, String column) throws SQLException{
         
         String query = "";
-         PreparedStatement select = null;
+        PreparedStatement select = null;
         
         if(column == null) {
             column = "id";
@@ -86,7 +86,6 @@ public class BaseController {
             select.setString(1, (String)id);
         }
         
-
         return (HashMap)resultSetToArrayList(select.executeQuery()).get(0);
     }
     

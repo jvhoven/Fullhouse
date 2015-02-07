@@ -5,6 +5,7 @@
  */
 package app.view.masterclass;
 
+import app.controller.LocationController;
 import app.controller.MasterclassController;
 import app.controller.UserController;
 import java.awt.BorderLayout;
@@ -144,8 +145,9 @@ public class Edit extends src.view.Edit {
         DefaultComboBoxModel cTeacher = controller.getTeachers();
         teacher = new JComboBox(cTeacher);
         
-        DefaultComboBoxModel cLocations = controller.getLocations();
-        cLocations.setSelectedItem(dbData.get("location"));
+        LocationController lController = new LocationController();
+        DefaultComboBoxModel cLocations = lController.getAllCombo();
+        cLocations.setSelectedItem(lController.getValueComboBox((String)dbData.get("location")));
         
         if(dbData.get("teacher") != null) {
             
@@ -199,6 +201,8 @@ public class Edit extends src.view.Edit {
     
     private void newEdit() {
         
+        LocationController lController = new LocationController();
+        
         DefaultComboBoxModel cTeacher = controller.getTeachers();
         teacher = new JComboBox(cTeacher);
 
@@ -206,7 +210,7 @@ public class Edit extends src.view.Edit {
         formBuilder.addTextfield(new JLabel("Startdatum: ", JLabel.LEFT), start_date = new JTextField(25));
         formBuilder.addTextfield(new JLabel("Minimale Rating: ", JLabel.LEFT), min_rating = new JTextField(25));
         formBuilder.addTextfield(new JLabel("Prijs: ", JLabel.LEFT), price = new JTextField(25));
-        formBuilder.addCombobox(new JLabel("Locatie: ", JLabel.LEFT), locations = new JComboBox(controller.getLocations()));
+        formBuilder.addCombobox(new JLabel("Locatie: ", JLabel.LEFT), locations = new JComboBox(lController.getAllCombo()));
         formBuilder.addCombobox(new JLabel("Leraar: ", JLabel.LEFT), teacher);
         
     }

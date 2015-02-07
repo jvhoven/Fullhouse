@@ -184,26 +184,7 @@ public class TournamentController extends BaseController {
         
         return null;
     }
-    
-    public DefaultComboBoxModel getLocations() {
         
-        DefaultComboBoxModel locations = new DefaultComboBoxModel();
-        locations.addElement("- Selecteer locatie -");
-        
-        LocationController locationController = new LocationController();
-        
-        try{
-            ResultSet allLocations = locationController.getAll();
-            while(allLocations.next()) {
-                locations.addElement("[" + allLocations.getString("postal") + "] " + allLocations.getString("address") + " " + allLocations.getInt("streetnr") + ", " + allLocations.getString("city"));
-            }
-        } catch(SQLException e) {
-            
-        }
-        
-        return locations;
-    }
-    
     public DefaultComboBoxModel getRandomValues(int steps, int max){
           
         DefaultComboBoxModel payments = new DefaultComboBoxModel();
