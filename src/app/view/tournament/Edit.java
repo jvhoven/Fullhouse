@@ -93,7 +93,9 @@ public class Edit extends src.view.Edit {
         startButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.startMatchmaking(dbData);
+                if(controller.canStart((int) dbData.get("id"))) {
+                    controller.startMatchmaking(dbData);
+                }
             }
         });
         

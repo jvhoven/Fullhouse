@@ -99,7 +99,9 @@ public class TournamentController extends BaseController {
    
     }
     
-    public boolean canStart() {
+    public boolean canStart(int id) {
+        
+        //if()
         
         return false;
         

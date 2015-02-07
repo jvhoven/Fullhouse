@@ -63,7 +63,7 @@ public class Overview extends View {
                 
                 Location location = Factory.createLocation(
                     locations.getString("postal"),
-                    locations.getInt("streetnr"),
+                    locations.getString("streetnr"),
                     locations.getString("address"),
                     locations.getString("city"),
                     locations.getInt("max_capacity")

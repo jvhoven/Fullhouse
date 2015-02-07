@@ -70,17 +70,24 @@ public class BaseController {
     public HashMap get(Object id, String column) throws SQLException{
         
         String query = "";
+         PreparedStatement select = null;
+        
         if(column == null) {
             column = "id";
         }
         
         if(id instanceof Integer) {
-            query = "SELECT * FROM " + this.table + " WHERE " + column + " = " + (int)id; 
+            query = "SELECT * FROM " + this.table + " WHERE " + column + " = ?"; 
+            select = conn.prepareStatement(query);
+            select.setInt(1, (int)id);
         } else if(id instanceof String) {
-            query = "SELECT * FROM " + this.table + " WHERE " + column + " LIKE '" + (String)id + "'"; 
+            query = "SELECT * FROM " + this.table + " WHERE " + column + " LIKE ?"; 
+            select = conn.prepareStatement(query);
+            select.setString(1, (String)id);
         }
         
-        return (HashMap)resultSetToArrayList(stat.executeQuery(query)).get(0);
+
+        return (HashMap)resultSetToArrayList(select.executeQuery()).get(0);
     }
     
     public void insert(PreparedStatement insert) throws SQLException {   
