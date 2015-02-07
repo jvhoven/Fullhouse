@@ -112,7 +112,8 @@ public class ParticipantController extends BaseController {
     public ResultSet getAllByTournament(int tournamentId) {
         
         // Hier je query
-        String query = "SELECT * FROM " + this.table + " WHERE tournament_id = " + tournamentId;
+        String query = "SELECT * FROM " + this.table + " WHERE tournament_id = " + tournamentId + " AND has_paid = 1";
+        System.out.println(query);
         
         try {
             return stat.executeQuery(query); 
