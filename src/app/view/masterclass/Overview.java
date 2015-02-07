@@ -87,7 +87,7 @@ public class Overview extends View {
                     masterclasses.getString("name"),
                     userObject,
                     masterclasses.getInt("min_rating"),
-                    masterclasses.getInt("price"),
+                    masterclasses.getDouble("price"),
                     masterclasses.getString("location"),
                     masterclasses.getString("start_date")
                 );
