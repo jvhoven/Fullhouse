@@ -1,0 +1,63 @@
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must ends with two \r.
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# NetBeans specific #
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Class Files #
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+/Calculator/nbproject/private/
+/Swing/nbproject/private/
+/SchoolOpdrachten/nbproject/private/
+/Spelletje/nbproject/private/
+/Client&Server/nbproject/private/
+/Client/nbproject/private/
+/Server/nbproject/private/
+/Chatbox/nbproject/private/
+/SchoolOpdrachten2/nbproject/private/
