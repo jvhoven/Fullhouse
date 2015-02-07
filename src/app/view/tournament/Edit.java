@@ -134,7 +134,9 @@ public class Edit extends src.view.Edit {
 
         LocationController lController = new LocationController();
         DefaultComboBoxModel cLocations = lController.getAllCombo();
-        cLocations.setSelectedItem(lController.getValueComboBox((String)dbData.get("location")));
+        if(lController.getValueComboBox((String)dbData.get("location")) != null) {
+            cLocations.setSelectedItem(lController.getValueComboBox((String)dbData.get("location")));
+        }
         
         DefaultComboBoxModel cParticipantsPerTable = controller.getRandomValues(1, 20);
         cParticipantsPerTable.setSelectedItem(dbData.get("players_per_table"));

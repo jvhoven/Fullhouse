@@ -19,6 +19,7 @@ import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import src.Factory;
 import src.controller.BaseController;
+import src.controller.Utils;
 import src.rating.Matchmaking;
 
 /**
@@ -95,15 +96,48 @@ public class TournamentController extends BaseController {
         // Matchmaking doen
         //new tests.Matchmaking();
         Matchmaking matchmake = new Matchmaking(tournament, participants);
-        
-   
+      
     }
     
     public boolean canStart(int id) {
+                
+        try {
+            // Toernooi data
+            HashMap<String, Object> tournament = super.get(id, null);
+                       
+            // Alle inschrijvers ophalen op basis van toernooi
+            ParticipantController pController = new ParticipantController();
+            ResultSet rs = pController.getAllByTournament(id);
+            int participants = 0;
+
+            while(rs.next()) {
+                participants++;
+            }
+            
+            if(tournament.get("location") == null) {
+                Utils.sendMessage("Error", "Er is nog geen locatie gekozen voor dit toernooi.", false);
+                return false;
+            }     
+            
+            // Kijken of locatie daadwerkelijk het aantal inschrijvingen kan bevatten
+            LocationController lController = new LocationController();
+            HashMap<String, Object> location = lController.get(tournament.get("location"), "postal");
+                
+            // Als er niet genoeg inschrijvingen zijn
+            if(participants < (int)tournament.get("min_participants")) {
+                Utils.sendMessage("Error", "Er zijn niet genoeg inschrijvingen om het toernooi te starten.", false);
+                return false;
+            }
+            
+            if((int)location.get("max_capacity") < participants) {
+                Utils.sendMessage("Error", "De locatie die je gekozen hebt kan het aantal inschrijvingen niet aan.", false);
+            }
+
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
         
-        //if()
-        
-        return false;
+        return true;
         
     }
     

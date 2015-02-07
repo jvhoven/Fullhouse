@@ -80,8 +80,7 @@ public class LocationController extends BaseController {
             HashMap<String, Object> data = super.get(postal, "postal");
             return "[" + data.get("postal") + "] " + data.get("address") + " " + data.get("streetnr") + ", " + data.get("city");
            
-        } catch(SQLException ex) {
-            ex.printStackTrace();
+        } catch(SQLException | NullPointerException ex) {
         }
         
         return null;
